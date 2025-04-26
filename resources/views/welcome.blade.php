@@ -41,8 +41,8 @@
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#dokumentasi" class="text-gray-700 hover:text-blue-600">Dokumentasi</a>
                     <a href="#kontak" class="text-gray-700 hover:text-blue-600">Kontak</a>
-                    <a href="#kontak" class="text-gray-700 hover:text-blue-600">Cek Jadwal</a>
-                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk/Login</a>
+                    <a href="{{ url('/download/surat') }}   " class="text-gray-700 hover:text-blue-600">Surat Permohonan</a>
+                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk</a>
                     <a href="{{ route('form') }}" 
                     style="background-color: #fc4f05;" 
                     class="text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
@@ -63,8 +63,8 @@
                 <div class="flex flex-col space-y-4 mt-4">
                     <a href="#dokumentasi" class="text-gray-700 hover:text-blue-600">Dokumentasi</a>
                     <a href="#kontak" class="text-gray-700 hover:text-blue-600">Kontak</a>
-                    <a href="#kontak" class="text-gray-700 hover:text-blue-600">Cek Jadwal</a>
-                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk/Login</a>
+                    <a href="{{ url('/download/surat') }}"" class="text-gray-700 hover:text-blue-600">Surat Permohonan</a>
+                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk</a>
                     <a href="{{ route('form') }}" 
                     style="background-color: #fc4f05;" 
                     class="text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
@@ -194,8 +194,8 @@
                     <div class="overflow-hidden rounded-xl">
                         <img src="{{ asset('images/kegiatan2.jpg') }}" alt="Kegiatan 2" class="gallery-img w-full h-64 object-cover">
                     </div>
-                    <h3 class="text-xl font-bold">Simulasi Bencana</h3>
-                    <p class="text-gray-600">Simulasi penanganan bencana bersama masyarakat dan stakeholder terkait.</p>
+                    <h3 class="text-xl font-bold">Bantuan Bencana</h3>
+                    <p class="text-gray-600">Bantuan penanganan bencana bersama masyarakat dan stakeholder terkait.</p>
                     <p class="text-sm text-gray-500">15 Januari 2025</p>
                 </div>
                 <!-- Gallery Item 3 -->
@@ -332,9 +332,10 @@
                             </svg>
                         </a>
                         <a href="https://x.com/bpbdkudus" class="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition duration-300">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                {{-- <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                                </svg>
+                                </svg> --}}
+                                @svg('bi-twitter-x')
                         </a>
                         <a href="https://www.instagram.com/bpbdkudus/?hl=id" class="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition duration-300">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -346,6 +347,12 @@
                                 <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
                             </svg>
                         </a>
+                        {{-- <a href="https://www.youtube.com/channel/UC-ld4aBDiY7YVZibXBacY7A" class="bg-blue-800 p-2 rounded-full hover:bg-blue-700 transition duration-300">
+                            
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+                            </svg>
+                        </a> --}}
                     </div>
                 </div>
             </div>

@@ -3,6 +3,8 @@
 
 namespace App\Http\Controllers;
 
+use create;
+use App\Models\Schedule;
 use App\Models\Submission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -10,8 +12,22 @@ use Illuminate\Support\Facades\Storage;
 
 class SubmissionController extends Controller
 {
+
     public function create()
     {
+        // Ambil tanggal kunjungan dari request (jika ada)
+        $tanggalKunjungan = request()->input('tanggal_kunjungan');
+
+        // Ambil data waktu kunjungan yang tersedia berdasarkan tanggal
+        $waktuKunjunganOptions = Schedule::where('tanggal_kunjungan', $tanggalKunjungan)
+            ->where('is_available', true)
+            ->get();
+
+        // // Kirim data ke view
+        // return view('pengajuan.create', [
+        //     'waktuKunjunganOptions' => $waktuKunjunganOptions,
+        //     'tanggalKunjungan' => $tanggalKunjungan,
+        // ]);
         return view('form');
     }
 
@@ -19,7 +35,7 @@ class SubmissionController extends Controller
 {
     // Validasi input
     $validatedData = $request->validate([
-        'tanggal_kunjungan' => 'required|date|after:today',
+        'tanggal_kunjungan' => 'required|date',
         'waktu_kunjungan' => 'required',
         'instansi' => 'required|string|max:255',
         'jenis_instansi' => 'required|string',
@@ -32,6 +48,9 @@ class SubmissionController extends Controller
         'tujuan_kunjungan' => 'required|string',
         'surat_permohonan' => 'required|file|mimes:pdf,doc,docx|max:2048',
     ]);
+
+    $validatedData['status'] = 'pending';
+
 
     try {
         // Handle file upload

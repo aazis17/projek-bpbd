@@ -23,6 +23,14 @@ class SubmissionResource extends Resource
     
     protected static ?string $navigationLabel = 'Pengajuan Kunjungan';
 
+
+
+public static function getNavigationSort(): ?int
+{
+    return 2; // Angka lebih besar => muncul di bawah
+}
+
+
     public static function form(Form $form): Form
     {
         return $form
@@ -170,13 +178,13 @@ class SubmissionResource extends Resource
                         'approved' => 'success',
                         'rejected' => 'danger',
                     }),
-                Tables\Columns\TextColumn::make('catatan')
-                    ->label('Catatan')
-                    ->columnSpanFull(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->label('Tanggal Pengajuan')
-                    ->dateTime()
-                    ->sortable(),
+                // Tables\Columns\TextColumn::make('catatan')
+                //     ->label('Catatan')
+                //     ->columnSpanFull(),
+                // Tables\Columns\TextColumn::make('created_at')
+                //     ->label('Tanggal Pengajuan')
+                //     ->dateTime()
+                //     ->sortable(),
                 Tables\Columns\TextColumn::make('surat_permohonan')
                     ->label('Surat Permohonan')
                     ->formatStateUsing(function ($state) {

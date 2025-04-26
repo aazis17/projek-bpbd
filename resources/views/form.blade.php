@@ -45,11 +45,13 @@
                             </label>
                             <select id="waktu_kunjungan" name="waktu_kunjungan" required
                                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Pilih Waktu</option>
-                                <option value="09:00">09:00 WIB</option>
-                                <option value="10:00">10:00 WIB</option>
-                                <option value="13:00">13:00 WIB</option>
-                                <option value="14:00">14:00 WIB</option>
+                                <option value="09.00 WIB">09.00 WIB</option>
+                                
+                                {{-- @foreach($waktuKunjunganOptions as $waktu)
+                                    <option value="{{ $waktu->waktu_kunjungan }}">
+                                        {{ \Carbon\Carbon::parse($waktu->waktu_kunjungan)->format('H:i') }}
+                                    </option>
+                                @endforeach --}}
                             </select>
                         </div>
                     </div>

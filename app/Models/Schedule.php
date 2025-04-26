@@ -10,14 +10,13 @@ class Schedule extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tanggal_kunjungan',
+        'tanggal_kunjungan', // Tambahkan kolom tanggal_kunjungan
         'waktu_kunjungan',
-        'is_available',
+        'is_available', // Ubah is_active menjadi is_available
     ];
 
-    // Relasi ke tabel submissions (jika diperlukan)
-    public function submissions()
-    {
-        return $this->hasMany(Submission::class, 'tanggal_kunjungan', 'tanggal_kunjungan');
-    }
+    protected $casts = [
+        'tanggal_kunjungan' => 'date', // Cast kolom tanggal_kunjungan sebagai date
+        'is_available' => 'boolean', // Cast kolom is_available sebagai boolean
+    ];
 }

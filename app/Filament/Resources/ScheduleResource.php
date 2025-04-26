@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ScheduleResource\Pages;
 use App\Models\Schedule;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -14,64 +12,50 @@ class ScheduleResource extends Resource
 {
     protected static ?string $model = Schedule::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-calendar';
-
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static ?string $navigationLabel = 'Jadwal Kunjungan';
     protected static ?string $navigationGroup = 'Pengaturan';
 
-    protected static ?string $navigationLabel = 'Jadwal Kunjungan';
-
-    public static function form(Form $form): Form
+    // Menggunakan schema untuk mendefinisikan form
+    public static function form(Forms\Form $form): Forms\Form
     {
-        return $form
-            ->schema([
-                Forms\Components\DatePicker::make('tanggal_kunjungan')
-                    ->label('Tanggal Kunjungan')
-                    ->required()
-                    ->unique(ignoreRecord: true) // Pastikan tanggal unik
-                    ->minDate(now()->addDay()), // Pastikan tanggal setelah hari ini
-                Forms\Components\Select::make('waktu_kunjungan')
-                    ->label('Waktu Kunjungan')
-                    ->required()
-                    ->options([
-                        '09:00' => '09:00 WIB',
-                        '10:00' => '10:00 WIB',
-                        '13:00' => '13:00 WIB',
-                        '14:00' => '14:00 WIB',
-                    ]),
-                Forms\Components\Toggle::make('is_available')
-                    ->label('Tersedia')
-                    ->default(true),
-            ]);
+        return $form->schema([
+            Forms\Components\DatePicker::make('tanggal_kunjungan') // Field untuk tanggal_kunjungan
+                ->label('Tanggal Kunjungan')
+                ->required(),
+
+            Forms\Components\TimePicker::make('waktu_kunjungan') // Field untuk waktu_kunjungan
+                ->label('Waktu Kunjungan')
+                ->required(),
+
+            Forms\Components\Toggle::make('is_available') // Field untuk is_available
+                ->label('Tersedia')
+                ->default(true),
+        ]);
     }
 
+    // Menampilkan tabel dengan kolom sesuai field yang ada
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('tanggal_kunjungan')
-                    ->label('Tanggal')
-                    ->date()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('waktu_kunjungan')
-                    ->label('Waktu'),
-                Tables\Columns\IconColumn::make('is_available')
-                    ->label('Tersedia')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('tanggal_kunjungan') // Kolom untuk tanggal_kunjungan
+                    ->label('Tanggal Kunjungan')
+                    ->date('d M Y'),
+
+                Tables\Columns\TextColumn::make('waktu_kunjungan') // Kolom untuk waktu_kunjungan
+                    ->label('Waktu Kunjungan')
+                    ->time('H:i'),
+
+                Tables\Columns\BooleanColumn::make('is_available') // Kolom untuk is_available
+                    ->label('Tersedia'),
             ])
             ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Filter tambahan bisa ditambahkan di sini
             ]);
     }
 
+    // Mendefinisikan halaman yang tersedia pada resource ini
     public static function getPages(): array
     {
         return [
