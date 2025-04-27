@@ -35,28 +35,27 @@ class KunjunganDiterimaResource extends Resource
     protected static ?string $title = 'Cdddle';
     protected ?string $heading = 'Custom Page Heading';
     protected ?string $subheading = 'Custom Page Subheading';
-    
+
 
     public function submission()
     {
         return $this->belongsTo(Submission::class);
     }
-    
-    
-public static function getEloquentQuery(): Builder
-{
-    return parent::getEloquentQuery()
-    ->whereHas('submission', function ($query) {
-        $query->where('status', 'approved');
-    });
-
-}
 
 
-public static function getNavigationSort(): ?int
-{
-    return 3; // Angka lebih besar => muncul di bawah
-}
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->whereHas('submission', function ($query) {
+                $query->where('status', 'approved');
+            });
+    }
+
+
+    public static function getNavigationSort(): ?int
+    {
+        return 3; // Angka lebih besar => muncul di bawah
+    }
 
     public static function form(Form $form): Form
     {
@@ -89,7 +88,7 @@ public static function getNavigationSort(): ?int
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'pending' => 'warning',
                         'approved' => 'success',
                         'rejected' => 'danger',
@@ -104,7 +103,7 @@ public static function getNavigationSort(): ?int
                 Tables\Columns\TextColumn::make('surat_permohonan')
                     ->label('Surat Permohonan')
                     ->formatStateUsing(function ($state) {
-                    return '<a href="' . asset('storage/' . $state) . '" target="_blank">Download</a>';
+                        return '<a href="' . asset('storage/' . $state) . '" target="_blank">Download</a>';
                     })
                     ->html(),
             ])
@@ -130,16 +129,16 @@ public static function getNavigationSort(): ?int
             ->actions([
                 ActionGroup::make([
 
-                Action::make('whatsapp')
-                ->label('WhatsApp')
-                ->icon('heroicon-o-chat-bubble-oval-left')
-                ->color('success')
-                ->url(fn ($record) => "https://wa.me/{$record->phone}", shouldOpenInNewTab: true)
-                ->visible(fn ($record) => $record->phone !== null),
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ]),
+                    Action::make('whatsapp')
+                        ->label('WhatsApp')
+                        ->icon('heroicon-o-chat-bubble-oval-left')
+                        ->color('success')
+                        ->url(fn($record) => "https://wa.me/{$record->phone}", shouldOpenInNewTab: true)
+                        ->visible(fn($record) => $record->phone !== null),
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
