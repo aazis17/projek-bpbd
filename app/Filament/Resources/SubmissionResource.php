@@ -9,9 +9,12 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Actions\ActionGroup;
+use Filament\Tables\Actions\Action;
+use Filament\Tables\Table;
+
+
 
 class SubmissionResource extends Resource
 {
@@ -22,6 +25,7 @@ class SubmissionResource extends Resource
     protected static ?string $navigationGroup = 'Kunjungan';
     
     protected static ?string $navigationLabel = 'Pengajuan Kunjungan';
+    
 
 
 
@@ -29,6 +33,9 @@ public static function getNavigationSort(): ?int
 {
     return 2; // Angka lebih besar => muncul di bawah
 }
+
+
+
 
 
     public static function form(Form $form): Form
@@ -158,16 +165,16 @@ public static function getNavigationSort(): ?int
                     ->label('Tanggal')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('waktu_kunjungan')
-                    ->label('Waktu'),
+                // Tables\Columns\TextColumn::make('waktu_kunjungan')
+                //     ->label('Waktu'),
                 Tables\Columns\TextColumn::make('instansi')
                     ->label('Instansi')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama_pj')
                     ->label('Penanggung Jawab')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->label('Telepon'),
+                // Tables\Columns\TextColumn::make('phone')
+                //     ->label('Telepon'),
                 Tables\Columns\TextColumn::make('jumlah_peserta')
                     ->label('Jumlah Peserta')
                     ->sortable(),
@@ -212,9 +219,18 @@ public static function getNavigationSort(): ?int
             ])
 
             ->actions([
+                ActionGroup::make([
+
+                Action::make('whatsapp')
+                ->label('WhatsApp')
+                ->icon('heroicon-o-chat-bubble-oval-left')
+                ->color('success')
+                ->url(fn ($record) => "https://wa.me/{$record->phone}", shouldOpenInNewTab: true)
+                ->visible(fn ($record) => $record->phone !== null),
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+            ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

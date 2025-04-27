@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KunjunganDiterima extends Model
+class KunjunganDitolak extends Model
 {
     //
     public function submission()
@@ -38,6 +38,5 @@ class KunjunganDiterima extends Model
         'jumlah_peserta' => 'integer',
     ];
 
+
 }
-
-

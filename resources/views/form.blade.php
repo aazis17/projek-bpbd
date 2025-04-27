@@ -249,13 +249,43 @@
         alert('Ukuran file tidak boleh lebih dari 2MB');
         return;
     }
-            // Here you would typically submit the form data to your backend
-            alert('Form berhasil dikirim! Kami akan menghubungi Anda untuk konfirmasi kunjungan.');
+
         });
 
         // Disable past dates in date picker
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('tanggal_kunjungan').setAttribute('min', today);
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek apakah ada flash message 'success'
+            @if(session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#3085d6',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+    
+            // Cek apakah ada flash message 'error'
+            @if(session('error'))
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: '{{ session('error') }}',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#d33',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 </body>
 </html>
