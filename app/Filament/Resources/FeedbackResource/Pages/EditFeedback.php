@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\ScheduleResource\Pages;
+namespace App\Filament\Resources\FeedbackResource\Pages;
 
-use App\Filament\Resources\ScheduleResource;
+use App\Filament\Resources\FeedbackResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSchedule extends EditRecord
+class EditFeedback extends EditRecord
 {
-    protected static string $resource = ScheduleResource::class;
+    protected static string $resource = FeedbackResource::class;
 
     protected function getHeaderActions(): array
     {

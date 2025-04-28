@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +15,13 @@
         }
     </style>
 </head>
+
 <body class="hero-pattern min-h-screen">
     <div class="container mx-auto px-4 py-8">
         <!-- Header Section -->
         <div class="text-center mb-10">
-            <img src="{{ asset('images/logobpbd3.png') }}" alt="Logo BPBD Kudus" class="mx-auto mb-4 rounded-lg shadow-lg">
+            <img src="{{ asset('images/logobpbd3.png') }}" alt="Logo BPBD Kudus"
+                class="mx-auto mb-4 rounded-lg shadow-lg">
             <h1 class="text-4xl font-bold text-gray-800 mb-2">Pengajuan Kunjungan Edukasi</h1>
             <p class="text-gray-600">Badan Penanggulangan Bencana Daerah Kabupaten Kudus</p>
         </div>
@@ -46,8 +49,8 @@
                             <select id="waktu_kunjungan" name="waktu_kunjungan" required
                                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="09.00 WIB">09.00 WIB</option>
-                                
-                                {{-- @foreach($waktuKunjunganOptions as $waktu)
+
+                                {{-- @foreach ($waktuKunjunganOptions as $waktu)
                                     <option value="{{ $waktu->waktu_kunjungan }}">
                                         {{ \Carbon\Carbon::parse($waktu->waktu_kunjungan)->format('H:i') }}
                                     </option>
@@ -149,11 +152,11 @@
                 </div>
 
                 <!-- Informasi Status dan Catatan -->
-<div class="bg-yellow-50 p-4 rounded-lg mb-6">
-    <h2 class="text-xl font-semibold text-yellow-800 mb-4">Catatan</h2>
-    <div class="grid grid-cols-1 gap-6">
-        <!-- Field Status -->
-        {{-- <div>
+                <div class="bg-yellow-50 p-4 rounded-lg mb-6">
+                    <h2 class="text-xl font-semibold text-yellow-800 mb-4">Catatan</h2>
+                    <div class="grid grid-cols-1 gap-6">
+                        <!-- Field Status -->
+                        {{-- <div>
             <label class="block text-gray-700 font-medium mb-2" for="status">
                 Status Pengajuan*
             </label>
@@ -165,16 +168,16 @@
             </select>
         </div> --}}
 
-        <!-- Field Catatan -->
-        <div>
-            <label class="block text-gray-700 font-medium mb-2" for="catatan">
-            
-            </label>
-            <textarea id="catatan" name="catatan" rows="3"
-                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
-        </div>
-    </div>
-</div>
+                        <!-- Field Catatan -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2" for="catatan">
+
+                            </label>
+                            <textarea id="catatan" name="catatan" rows="3"
+                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500"></textarea>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Dokumen Pendukung -->
                 <div class="bg-red-50 p-4 rounded-lg mb-6">
@@ -184,7 +187,8 @@
                             <label class="block text-gray-700 font-medium mb-2" for="surat_permohonan">
                                 Surat Permohonan Kunjungan*
                             </label>
-                            <input type="file" id="surat_permohonan" name="surat_permohonan" accept=".pdf,.doc,.docx" required
+                            <input type="file" id="surat_permohonan" name="surat_permohonan"
+                                accept=".pdf,.doc,.docx" required
                                 class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
                             <p class="text-sm text-gray-500 mt-1">Format: PDF, DOC, atau DOCX (Maks. 2MB)</p>
                         </div>
@@ -199,7 +203,8 @@
                         <input type="checkbox" id="terms" name="terms" required
                             class="mt-1 rounded text-blue-500 focus:ring-blue-500">
                         <label for="terms" class="text-sm text-gray-600">
-                            Saya menyatakan bahwa data yang diisi adalah benar dan bersedia mengikuti ketentuan kunjungan yang berlaku di BPBD Kudus
+                            Saya menyatakan bahwa data yang diisi adalah benar dan bersedia mengikuti ketentuan
+                            kunjungan yang berlaku di BPBD Kudus
                         </label>
                     </div>
                     <button type="submit"
@@ -216,19 +221,19 @@
         </div>
     </div>
     <div class="container mx-auto px-4 py-8">
-        @if(session('success'))
+        @if (session('success'))
             <div class="bg-green-500 text-white p-4 rounded-lg mb-4">
                 {{ session('success') }}
             </div>
         @endif
-    
-        @if(session('error'))
+
+        @if (session('error'))
             <div class="bg-red-500 text-white p-4 rounded-lg mb-4">
                 {{ session('error') }}
             </div>
         @endif
-    
-        @if($errors->any())
+
+        @if ($errors->any())
             <div class="bg-red-500 text-white p-4 rounded-lg mb-4">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -241,14 +246,14 @@
 
 
     <script>
-    document.getElementById('visitForm').addEventListener('submit', function(e) {
-    // Validate file size
-    const supportLetter = document.getElementById('surat_permohonan').files[0];
-    if (supportLetter && supportLetter.size > 2 * 1024 * 1024) {
-        e.preventDefault();
-        alert('Ukuran file tidak boleh lebih dari 2MB');
-        return;
-    }
+        document.getElementById('visitForm').addEventListener('submit', function(e) {
+            // Validate file size
+            const supportLetter = document.getElementById('surat_permohonan').files[0];
+            if (supportLetter && supportLetter.size > 2 * 1024 * 1024) {
+                e.preventDefault();
+                alert('Ukuran file tidak boleh lebih dari 2MB');
+                return;
+            }
 
         });
 
@@ -259,7 +264,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Cek apakah ada flash message 'success'
-            @if(session('success'))
+            @if (session('success'))
                 Swal.fire({
                     title: 'Berhasil!',
                     text: '{{ session('success') }}',
@@ -270,9 +275,9 @@
                     timerProgressBar: true
                 });
             @endif
-    
+
             // Cek apakah ada flash message 'error'
-            @if(session('error'))
+            @if (session('error'))
                 Swal.fire({
                     title: 'Gagal!',
                     text: '{{ session('error') }}',
@@ -286,6 +291,7 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+
 </body>
+
 </html>

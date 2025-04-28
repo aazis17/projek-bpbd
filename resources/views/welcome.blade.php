@@ -101,27 +101,19 @@
 
     <!-- Hero Section -->
     <section id="beranda" class="hero-gradient pt-24">
-        <div class="container mx-auto px-4 py-16">
+        <div class="container mx-auto px-4 py-12"> <!-- Reduced padding from py-16 to py-12 -->
             <div class="flex flex-col md:flex-row items-center justify-between">
                 <div class="md:w-1/2 text-white" data-aos="fade-right">
                     <h1 class="text-4xl md:text-6xl font-bold mb-6">Sigap Tanggap Bencana</h1>
                     <p class="text-xl mb-8">Melindungi dan melayani masyarakat Kudus dengan kesiapsiagaan dan penanganan
                         bencana yang profesional.</p>
-                    {{-- <div class="flex space-x-4">
-                        <a href="#" class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-gray-100 transition duration-300">
-                            Pelajari Lebih Lanjut
-                        </a>
-                        <a href="#" class="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-blue-600 transition duration-300">
-                            Hubungi Kami
-                        </a>
-                    </div> --}}
                 </div>
                 <div class="md:w-1/2 mt-8 md:mt-0" data-aos="fade-left">
                     <img src="{{ asset('images/logobpbd3.png') }}" alt="Hero Image" class="rounded-lg shadow-xl">
                 </div>
             </div>
         </div>
-        <div class="wave-bottom">
+        <div class="wave-bottom -mb-6"> <!-- Added negative margin to bring sections closer -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
                 <path fill="#ffffff" fill-opacity="1"
                     d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
@@ -131,7 +123,7 @@
     </section>
 
     <!-- Statistics Section -->
-    <section class="py-16 bg-white">
+    <section class="py-10 bg-white"> <!-- Reduced padding from py-16 to py-10 -->
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="stat-card bg-blue-50 p-6 rounded-xl text-center" data-aos="fade-up">
@@ -153,6 +145,8 @@
             </div>
         </div>
     </section>
+
+
 
     <!-- Layanan Section -->
     <section id="layanan" class="py-16 bg-gray-50">
@@ -192,6 +186,38 @@
                     <h3 class="text-xl font-bold mb-4">Mitigasi Bencana</h3>
                     <p class="text-gray-600">Upaya pencegahan dan pengurangan risiko dampak bencana.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8" data-aos="fade-up">Layanan Online</h2>
+            <p class="text-xl text-gray-600 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Akses layanan BPBD Kudus secara online untuk pengajuan kunjungan dan unduh format surat permohonan
+                resmi.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6 mt-8" data-aos="fade-up" data-aos-delay="200">
+                <a href="{{ route('form') }}"
+                    class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white rounded-lg shadow-lg"
+                    style="background-color: #fc4f05;">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                        </path>
+                    </svg>
+                    Pengajuan Kunjungan
+                </a>
+                <a href="{{ url('/download/surat') }}"
+                    class="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                    Download Format Surat
+                </a>
             </div>
         </div>
     </section>
@@ -297,30 +323,32 @@
                     </div>
                 </div>
                 <div data-aos="fade-left">
-                    <form class="bg-white p-8 rounded-xl shadow-lg">
+                    <form action="{{ route('feedback.store') }}" method="POST"
+                        class="bg-white p-8 rounded-xl shadow-lg">
+                        @csrf
                         <h3 class="text-2xl font-bold mb-6">Kritik & Saran</h3>
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-gray-700 mb-2">Nama Lengkap</label>
-                                <input type="text"
+                                <label class="block text-gray-700 mb-2" for="nama_lengkap">Nama Lengkap</label>
+                                <input type="text" name="nama_lengkap"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Email</label>
-                                <input type="email"
+                                <label class="block text-gray-700 mb-2" for="email">Email</label>
+                                <input type="email" name="email"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Subjek</label>
-                                <input type="text"
+                                <label class="block text-gray-700 mb-2" for="subjek">Subjek</label>
+                                <input type="text" name="subjek"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <div>
-                                <label class="block text-gray-700 mb-2">Pesan</label>
-                                <textarea rows="4"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                <label class="block text-gray-700 mb-2" for="pesan">Pesan</label>
+                                <textarea rows="4" name="pesan"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">{{ old('pesan') }}</textarea>
                             </div>
-                            <button
+                            <button type="submit"
                                 class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
                                 Kirim Pesan
                             </button>
@@ -480,15 +508,15 @@
         }
 
         // Form Submission Handler
-        const contactForm = document.querySelector('form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // Add your form submission logic here
-                alert('Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
-                contactForm.reset();
-            });
-        }
+        // const contactForm = document.querySelector('form');
+        // if (contactForm) {
+        //     contactForm.addEventListener('submit', (e) => {
+        //         e.preventDefault();
+        //         // Add your form submission logic here
+        //         alert('/Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+        //         contactForm.reset();
+        //     });
+        // }
 
         // Add loading animation for images
         document.addEventListener('DOMContentLoaded', () => {
