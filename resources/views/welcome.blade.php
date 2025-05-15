@@ -101,15 +101,16 @@
 
     <!-- Hero Section -->
     <section id="beranda" class="hero-gradient pt-24">
-        <div class="container mx-auto px-4 py-12"> <!-- Reduced padding from py-16 to py-12 -->
+        <div class="container mx-auto px-4 py-12">
             <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="md:w-1/2 text-white" data-aos="fade-right">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Sigap Tanggap Bencana</h1>
+                <div class="md:w-1/3 flex justify-center items-center mb-8 md:mb-0" data-aos="fade-right">
+                    <img src="{{ asset('images/logobpbd3.png') }}" alt="BPBD Logo"
+                        class="rounded-lg shadow-xl w-64 h-64 md:w-72 md:h-72 object-contain">
+                </div>
+                <div class="md:w-2/3 text-white pl-0 md:pl-8" data-aos="fade-left">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Sigap Tanggap Bencana</h1>
                     <p class="text-xl mb-8">Melindungi dan melayani masyarakat Kudus dengan kesiapsiagaan dan penanganan
                         bencana yang profesional.</p>
-                </div>
-                <div class="md:w-1/2 mt-8 md:mt-0" data-aos="fade-left">
-                    <img src="{{ asset('images/logobpbd3.png') }}" alt="Hero Image" class="rounded-lg shadow-xl">
                 </div>
             </div>
         </div>

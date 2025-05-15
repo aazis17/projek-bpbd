@@ -13,6 +13,10 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
+use App\Mail\StatusChangedEmail;
+use Illuminate\Support\Facades\Mail;
+
+
 
 
 
@@ -72,6 +76,7 @@ public static function getNavigationSort(): ?int
                             ->searchable()
                             ->hidden(fn (Forms\Get $get) => !$get('tanggal_kunjungan')),
                     ])->columns(2),
+                    
 
                 Forms\Components\Section::make('Informasi Instansi')
                     ->schema([
@@ -232,7 +237,10 @@ public static function getNavigationSort(): ?int
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ]),
+
+            
             ])
+            
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

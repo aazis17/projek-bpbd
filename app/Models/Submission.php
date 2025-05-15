@@ -4,18 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Mail\StatusChangedEmail;
+use Illuminate\Support\Facades\Mail;
 
 class Submission extends Model
 {
     use HasFactory;
-    
+
     public function schedule()
     {
         return $this->belongsTo(Schedule::class, 'tanggal_kunjungan', 'tanggal_kunjungan');
     }
 
     protected $table = 'submissions'; // Nama tabel
-    
+
     protected $fillable = [
         'tanggal_kunjungan',
         'waktu_kunjungan',
@@ -50,5 +52,27 @@ class Submission extends Model
                 ->where('waktu_kunjungan', $submission->waktu_kunjungan)
                 ->update(['is_available' => false]);
         });
+    }
+
+    // In Submission.php model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function updateStatus($id)
+    {
+        $submission = Submission::findOrFail($id);
+
+        // Ubah status pengajuan
+        $status = request('status'); // Status baru (approved/rejected)
+        $submission->status = $status;
+        $submission->save();
+
+        // Kirim email notifikasi
+        Mail::to($submission->user->email)->send(new StatusChangedEmail($status, $submission));
+
+        return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui!');
     }
 }
