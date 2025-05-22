@@ -42,10 +42,10 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo dan Nama BPBD -->
-                <div class="flex items-center space-x-4">
+                <a href="{{ url('/') }}" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
                     <img src="{{ asset('images/logobpbd3.png') }}" alt="Logo BPBD" class="h-10">
                     <span class="font-bold text-xl text-blue-900">BPBD Kudus</span>
-                </div>
+                </a>
 
                 <!-- Menu untuk Desktop -->
                 <div class="hidden md:flex space-x-8 items-center">

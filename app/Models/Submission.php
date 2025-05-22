@@ -11,10 +11,7 @@ class Submission extends Model
 {
     use HasFactory;
 
-    public function schedule()
-    {
-        return $this->belongsTo(Schedule::class, 'tanggal_kunjungan', 'tanggal_kunjungan');
-    }
+
 
     protected $table = 'submissions'; // Nama tabel
 
@@ -42,17 +39,7 @@ class Submission extends Model
         'jumlah_peserta' => 'integer',
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
 
-        static::creating(function ($submission) {
-            // Update status jadwal menjadi tidak tersedia
-            Schedule::where('tanggal_kunjungan', $submission->tanggal_kunjungan)
-                ->where('waktu_kunjungan', $submission->waktu_kunjungan)
-                ->update(['is_available' => false]);
-        });
-    }
 
     // In Submission.php model
     public function user()

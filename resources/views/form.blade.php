@@ -16,8 +16,58 @@
     </style>
 </head>
 
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo dan Nama BPBD -->
+                <a href="{{ url('/') }}" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
+                    <img src="{{ asset('images/logobpbd3.png') }}" alt="Logo BPBD" class="h-10">
+                    <span class="font-bold text-xl text-blue-900">BPBD Kudus</span>
+                </a>
+
+                <!-- Menu untuk Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#dokumentasi" class="text-gray-700 hover:text-blue-600">Dokumentasi</a>
+                    <a href="#kontak" class="text-gray-700 hover:text-blue-600">Kontak</a>
+                    <a href="{{ url('/download/surat') }}   " class="text-gray-700 hover:text-blue-600">Surat
+                        Permohonan</a>
+                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk</a>
+                    <a href="{{ route('form') }}" style="background-color: #fc4f05;"
+                        class="text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Pengajuan Kunjungan
+                    </a>
+                </div>
+
+                <!-- Tombol Toggle untuk Mobile -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menu untuk Mobile (Akan Muncul Saat Tombol Toggle Diklik) -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="flex flex-col space-y-4 mt-4">
+                    <a href="#dokumentasi" class="text-gray-700 hover:text-blue-600">Dokumentasi</a>
+                    <a href="#kontak" class="text-gray-700 hover:text-blue-600">Kontak</a>
+                    <a href="{{ url('/download/surat') }}"" class="text-gray-700 hover:text-blue-600">Surat
+                        Permohonan</a>
+                    <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-600">Masuk</a>
+                    <a href="{{ route('form') }}" style="background-color: #fc4f05;"
+                        class="text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition duration-300">
+                        Pengajuan Kunjungan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
 <body class="hero-pattern min-h-screen">
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4s py-8 pt-24 sm:pt-28">
         <!-- Header Section -->
         <div class="text-center mb-10">
             <img src="{{ asset('images/logobpbd3.png') }}" alt="Logo BPBD Kudus"

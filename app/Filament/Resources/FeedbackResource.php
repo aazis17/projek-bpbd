@@ -59,10 +59,13 @@ class FeedbackResource extends Resource
                 Tables\Columns\TextColumn::make('email')->label('Email'),
                 Tables\Columns\TextColumn::make('subjek')->label('Subjek'),
                 Tables\Columns\TextColumn::make('pesan')->label('Pesan')->limit(50),
-                Tables\Columns\TextColumn::make('created_at')->label('Tanggal')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->label('Tanggal')->dateTime()
+                    ->sortable(),
+
             ])
             ->filters([
                 //
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -65,13 +65,7 @@ public static function getNavigationSort(): ?int
                             ->label('Waktu Kunjungan')
                             ->required()
                             ->options(function (Forms\Get $get) {
-                                $tanggal = $get('tanggal_kunjungan');
-                                if ($tanggal) {
-                                    return Schedule::where('tanggal_kunjungan', $tanggal)
-                                        ->where('is_available', true)
-                                        ->pluck('waktu_kunjungan', 'waktu_kunjungan');
-                                }
-                                return [];
+        
                             })
                             ->searchable()
                             ->hidden(fn (Forms\Get $get) => !$get('tanggal_kunjungan')),
