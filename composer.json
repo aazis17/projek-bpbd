@@ -44,6 +44,11 @@
             "@php artisan package:discover --ansi",
             "@php artisan filament:upgrade"
         ],
+        "post-install-cmd": [
+        "php artisan key:generate",
+        "php artisan config:cache",
+        "php artisan migrate"
+        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
